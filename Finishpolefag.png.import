@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s5k22e461str"
-path="res://.godot/imported/Desert_Water.png-8c847294a3f6ce26b8b81549ed2dc737.ctex"
+uid="uid://g7wj2ymdv72i"
+path="res://.godot/imported/Finishpolefag.png-d310541b8a46ce9564618914270153e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Desert_Water.png"
-dest_files=["res://.godot/imported/Desert_Water.png-8c847294a3f6ce26b8b81549ed2dc737.ctex"]
+source_file="res://Finishpolefag.png"
+dest_files=["res://.godot/imported/Finishpolefag.png-d310541b8a46ce9564618914270153e4.ctex"]
 
 [params]
 
