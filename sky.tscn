@@ -1,0 +1,102 @@
+[gd_scene load_steps=9 format=3 uid="uid://c6gs237axacbk"]
+
+[ext_resource type="Texture2D" uid="uid://cflnd668hu7lw" path="res://free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 1/1.png" id="1_i28d6"]
+[ext_resource type="Texture2D" uid="uid://b6ljdbtnx8pcu" path="res://free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 1/4.png" id="2_2ta3i"]
+[ext_resource type="Script" path="res://sky.gd" id="2_n0mnw"]
+[ext_resource type="Texture2D" uid="uid://bm53ehw4jq3vi" path="res://free-sky-with-clouds-background-pixel-art-set/Clouds/Clouds 1/2.png" id="3_r4fub"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jehat"]
+atlas = ExtResource("1_i28d6")
+region = Rect2(0, 220, 512, 104)
+
+[sub_resource type="Animation" id="Animation_34p8x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("4:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 1550, 324)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 1550, 324)]
+}
+
+[sub_resource type="Animation" id="Animation_lamao"]
+resource_name = "move"
+length = 1.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("4:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 1550, 324), Rect2(576, 0, 1550, 324)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 1550, 324), Rect2(576, 0, 1550, 324)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5358r"]
+_data = {
+"RESET": SubResource("Animation_34p8x"),
+"move": SubResource("Animation_lamao")
+}
+
+[node name="Sky" type="Sprite2D" groups=["background"]]
+texture_filter = 1
+texture = SubResource("AtlasTexture_jehat")
+script = ExtResource("2_n0mnw")
+
+[node name="4" type="Sprite2D" parent="."]
+z_index = 2
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(6.67572e-06, -2.26498e-06)
+scale = Vector2(0.330323, 0.320988)
+texture = ExtResource("2_2ta3i")
+region_enabled = true
+region_rect = Rect2(0, 0, 1550, 324)
+
+[node name="2" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-1.55568e-05, -0.499998)
+scale = Vector2(0.330323, 0.317901)
+texture = ExtResource("3_r4fub")
+region_enabled = true
+region_rect = Rect2(0, 0, 1550, 324)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5358r")
+}

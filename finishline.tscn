@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf7awva8hysm7"]
+
+[ext_resource type="Texture2D" uid="uid://b6e15oegn5d6d" path="res://New Piskel.png" id="1_h453t"]
+[ext_resource type="Script" path="res://finishline.gd" id="1_wvlpb"]
+[ext_resource type="Texture2D" uid="uid://5teto4lsh8mg" path="res://New Piskel (1).png" id="2_47maw"]
+
+[node name="Finishline" type="Node2D" groups=["finishline"]]
+position = Vector2(256, 0)
+script = ExtResource("1_wvlpb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 4
+texture = ExtResource("1_h453t")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = 6
+position = Vector2(5, 3)
+texture = ExtResource("2_47maw")

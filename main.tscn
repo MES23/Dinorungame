@@ -1,0 +1,100 @@
+[gd_scene load_steps=13 format=3 uid="uid://dhf3mxfy5u8f6"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_82ywx"]
+[ext_resource type="PackedScene" uid="uid://wxjd2anpr52a" path="res://floor.tscn" id="1_pifai"]
+[ext_resource type="PackedScene" uid="uid://dld76yooac3b0" path="res://bdino.tscn" id="1_s4em5"]
+[ext_resource type="PackedScene" uid="uid://b22oljor43603" path="res://gdino.tscn" id="2_v0uqd"]
+[ext_resource type="PackedScene" uid="uid://depkckfjq25b3" path="res://rdino.tscn" id="3_hi18m"]
+[ext_resource type="PackedScene" uid="uid://bf7awva8hysm7" path="res://finishline.tscn" id="3_soxft"]
+[ext_resource type="PackedScene" uid="uid://dvawhkt6rupjf" path="res://ydino.tscn" id="4_4rkpt"]
+[ext_resource type="PackedScene" uid="uid://c6gs237axacbk" path="res://sky.tscn" id="5_db7oq"]
+[ext_resource type="PackedScene" uid="uid://b0qqhdgr2vjea" path="res://hud.tscn" id="7_wi2ix"]
+[ext_resource type="PackedScene" uid="uid://siq1sysqcwt0" path="res://obstical1.tscn" id="9_lhm7c"]
+[ext_resource type="Texture2D" uid="uid://01r7ldgsfscd" path="res://progbar.png" id="11_hp3h2"]
+[ext_resource type="Texture2D" uid="uid://c7tyiry46fr11" path="res://dotmarker.png" id="12_22x7s"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_82ywx")
+obstical = ExtResource("9_lhm7c")
+finishline = ExtResource("3_soxft")
+win = 2
+
+[node name="Floor1" parent="." groups=["bdino"] instance=ExtResource("1_pifai")]
+
+[node name="Floor2" parent="." groups=["gdino"] instance=ExtResource("1_pifai")]
+position = Vector2(128, 110)
+
+[node name="Floor3" parent="." groups=["rdino"] instance=ExtResource("1_pifai")]
+position = Vector2(128, 166)
+
+[node name="Floor4" parent="." groups=["ydino"] instance=ExtResource("1_pifai")]
+position = Vector2(128, 222)
+
+[node name="BDino" parent="." groups=["bdino"] instance=ExtResource("1_s4em5")]
+position = Vector2(24, 42)
+
+[node name="GDino" parent="." groups=["gdino"] instance=ExtResource("2_v0uqd")]
+position = Vector2(24, 98)
+
+[node name="RDino" parent="." groups=["rdino"] instance=ExtResource("3_hi18m")]
+position = Vector2(24, 154)
+
+[node name="YDino" parent="." groups=["ydino"] instance=ExtResource("4_4rkpt")]
+position = Vector2(24, 210)
+
+[node name="Sky1" parent="." groups=["bdino"] instance=ExtResource("5_db7oq")]
+position = Vector2(128, 26)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sky2" parent="." groups=["gdino"] instance=ExtResource("5_db7oq")]
+position = Vector2(128, 82)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sky3" parent="." groups=["rdino"] instance=ExtResource("5_db7oq")]
+position = Vector2(128, 138)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sky4" parent="." groups=["ydino"] instance=ExtResource("5_db7oq")]
+position = Vector2(128, 194)
+scale = Vector2(0.5, 0.5)
+
+[node name="HUD" parent="." instance=ExtResource("7_wi2ix")]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_top = 224.0
+offset_right = 256.0
+offset_bottom = 230.0
+texture = ExtResource("11_hp3h2")
+
+[node name="bmark" type="Sprite2D" parent="CanvasLayer/TextureRect"]
+modulate = Color(0.176471, 0.584314, 0.721569, 1)
+position = Vector2(3, 3)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("12_22x7s")
+
+[node name="gmark" type="Sprite2D" parent="CanvasLayer/TextureRect"]
+modulate = Color(0.623529, 0.737255, 0.301961, 1)
+position = Vector2(3, 3)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("12_22x7s")
+
+[node name="rmark" type="Sprite2D" parent="CanvasLayer/TextureRect"]
+modulate = Color(0.737255, 0.301961, 0.309804, 1)
+position = Vector2(3, 3)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("12_22x7s")
+
+[node name="ymark" type="Sprite2D" parent="CanvasLayer/TextureRect"]
+modulate = Color(0.992157, 0.780392, 0.376471, 1)
+position = Vector2(3, 3)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("12_22x7s")
+
+[connection signal="reset" from="." to="." method="_on_reset"]
+[connection signal="winner" from="." to="HUD" method="_on_main_winner"]
+[connection signal="go" from="HUD" to="." method="_on_hud_go"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
